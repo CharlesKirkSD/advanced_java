@@ -22,6 +22,16 @@ public class App {
         
         System.out.println(conn);
         
+        var stmt = conn.createStatement();
+        
+        String sql = "create table if not exists user(id integer primary key, name text not null)";
+        stmt.execute(sql);
+        
+        sql = "drop table user";
+        stmt.execute(sql);
+        
+        // Close open database resources
+        stmt.close();        
         conn.close();
     }
 }
