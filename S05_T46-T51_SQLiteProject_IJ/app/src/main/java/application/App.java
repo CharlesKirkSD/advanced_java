@@ -25,6 +25,21 @@ public class App {
         String sql = "create table if not exists user(id integer primary key, name text not null)";
         stmt.execute(sql);
 
+        sql = "insert into user(id, name) values(0, 'Bob')";
+        stmt.execute(sql);
+
+        sql = "insert into user(id, name) values(1, 'Mary')";
+        stmt.execute(sql);
+
+        sql = "select id, name from user";
+        var rs = stmt.executeQuery(sql);
+
+        while(rs.next()) {
+            int id = rs.getInt("id");
+            String name = rs.getString("name");
+            System.out.println("id: " + id + ", " + "name: " + name);
+        }
+
         sql = "drop table user";
         stmt.execute(sql);
 
