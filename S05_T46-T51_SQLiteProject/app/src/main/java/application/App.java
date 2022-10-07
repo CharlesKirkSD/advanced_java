@@ -14,6 +14,9 @@ public class App {
     public static void main(String[] args) throws ClassNotFoundException, SQLException {
         System.out.println(new App().getGreeting());
         
+        int [] ids = {0,1,2};
+        String [] names = {"Sue", "Bob", "Charlies"};
+        
         Class.forName("org.sqlite.JDBC");
         
         // Find the database
@@ -23,15 +26,25 @@ public class App {
         System.out.println(conn);
         
         var stmt = conn.createStatement();
+        conn.setAutoCommit(false);
         
         String sql = "create table if not exists user(id integer primary key, name text not null)";
         stmt.execute(sql);
         
-        sql = "insert into user(id, name) values(0, 'Bob')";
-        stmt.execute(sql);
+        // Using insert or ignore instead of ignore, which is what the tutorial uses, to prevent sql errors if the program is run multiple times.
+        sql = "insert or ignore into user (id, name) values(?, ?)";
+        var insertStatement = conn.prepareStatement(sql);
         
-        sql = "insert into user(id, name) values(1, 'Mary')";
-        stmt.execute(sql);
+        
+        for (int i = 0; i < ids.length; i++) {
+        	insertStatement.setInt(1, ids[i]);
+        	insertStatement.setString(2, names[i]);
+        	
+        	insertStatement.execute();
+        }
+        
+        conn.commit();
+        insertStatement.close();
 
         sql = "select id, name from user";
         var rs = stmt.executeQuery(sql);
@@ -44,7 +57,8 @@ public class App {
         }
         
         sql = "drop table user";
-        stmt.execute(sql);
+        // stmt.execute(sql);
+        conn.commit();        
         
         // Close open database resources
         stmt.close();        

@@ -4,7 +4,9 @@
 package application;
 
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public class App {
     public String getGreeting() {
@@ -14,22 +16,33 @@ public class App {
     public static void main(String[] args) throws ClassNotFoundException, SQLException {
         System.out.println(new App().getGreeting());
 
+        int [] ids = {0, 1, 2};
+        String [] names = {"Sue", "Bob", "Charles"};
+
         Class.forName("org.sqlite.JDBC");
 
         String dbUrl ="jdbc:sqlite:people.db";
         var connection = DriverManager.getConnection(dbUrl);
+        connection.setAutoCommit(false);
 
         System.out.println(connection);
 
-        var stmt = connection.createStatement();
+        Statement stmt = connection.createStatement();
         String sql = "create table if not exists user(id integer primary key, name text not null)";
         stmt.execute(sql);
 
-        sql = "insert into user(id, name) values(0, 'Bob')";
-        stmt.execute(sql);
+        sql = "insert or ignore into user(id, name) values(?, ?)";
+        PreparedStatement insertStatement = connection.prepareStatement(sql);
 
-        sql = "insert into user(id, name) values(1, 'Mary')";
-        stmt.execute(sql);
+        for (int i = 0; i < ids.length; i++) {
+            insertStatement.setInt(1, ids[i]);
+            insertStatement.setString(2, names[i]);
+
+            insertStatement.execute();
+        }
+
+        connection.commit();
+        insertStatement.close();
 
         sql = "select id, name from user";
         var rs = stmt.executeQuery(sql);
@@ -42,6 +55,7 @@ public class App {
 
         sql = "drop table user";
         stmt.execute(sql);
+        connection.commit();
 
         // Close open database resources
         stmt.close();
