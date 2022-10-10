@@ -29,5 +29,5 @@ dependencies {
 
 application {
     // Define the main class for the application.
-    mainClass = 'application.App'
+    mainClass = "main.java.application.App"
 }
