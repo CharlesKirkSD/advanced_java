@@ -17,22 +17,19 @@ public class App {
         int [] ids = {0,1,2};
         String [] names = {"Sue", "Bob", "Charlies"};
         
-        Class.forName("org.sqlite.JDBC");
+        // Class.forName("com.mysql.cj.jdbc.Driver");
         
         // Find the database
-        String dbUrl = "jdbc:sqlite:people.db";
-        var conn = DriverManager.getConnection(dbUrl);
+        String dbUrl = "jdbc:mysql://localhost:3306/people?serverTimeZone=UTC";
+        var conn = DriverManager.getConnection(dbUrl, "root", "jupiter");
         
         System.out.println(conn);
         
         var stmt = conn.createStatement();
         conn.setAutoCommit(false);
         
-        String sql = "create table if not exists user(id integer primary key, name text not null)";
-        stmt.execute(sql);
-        
         // Using insert or ignore instead of ignore, which is what the tutorial uses, to prevent sql errors if the program is run multiple times.
-        sql = "insert or ignore into user (id, name) values(?, ?)";
+        String sql = "insert ignore into user (id, name) values(?, ?)";
         var insertStatement = conn.prepareStatement(sql);
         
         
@@ -55,10 +52,6 @@ public class App {
         	
         	System.out.println(id + ": " + name);
         }
-        
-        sql = "drop table user";
-        // stmt.execute(sql);
-        conn.commit();        
         
         // Close open database resources
         stmt.close();        
