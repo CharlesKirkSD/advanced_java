@@ -4,7 +4,7 @@ import java.sql.SQLException;
 
 public class App {
 	public static void main(String[] args) {
-		System.out.println("Hello World!\nfrom S06_T61");
+		System.out.println("Hello World!\nfrom S06_T62");
 		
 		Database db = Database.instance();
 		try {
