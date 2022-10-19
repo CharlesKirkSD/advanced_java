@@ -20,8 +20,9 @@ public class App {
 
 		// Add users to the database
 		UserDao userDao = new UserDaoImpl();
+		
 		/*
-		userDao.save(new User("Uranus"));
+		userDao.save(new User("Saturn"));
 		userDao.save(new User("Mercury"));
 		*/
 		
@@ -36,6 +37,9 @@ public class App {
 		} else {
 			System.out.println("No user retrieved");
 		}
+		
+		
+		userDao.delete(new User(6, null));
 		
 		try {
 			db.close();
