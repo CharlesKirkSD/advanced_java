@@ -5,7 +5,7 @@ import java.util.Optional;
 
 public class App {
 	public static void main(String[] args) {
-		System.out.println("Hello World!\nfrom S06_T68");
+		System.out.println("Hello World!\nfrom S06_T69");
 		
 		Database db = Database.instance();
 		try {
@@ -30,16 +30,20 @@ public class App {
 		
 		users.forEach(System.out::println);
 		
-		var userOpt = userDao.findById(1);
+		var userOpt = userDao.findById(16);
 
 		if (userOpt.isPresent()) {
-			System.out.println("Retrieved " + userOpt.get());			
+			User user = userOpt.get();
+			System.out.println("Retrieved " + user);
+			user.setName("Venus");
+			userDao.update(user);
 		} else {
 			System.out.println("No user retrieved");
 		}
 		
 		
-		userDao.delete(new User(6, null));
+		// userDao.delete(new User(6, null));
+		
 		
 		try {
 			db.close();
