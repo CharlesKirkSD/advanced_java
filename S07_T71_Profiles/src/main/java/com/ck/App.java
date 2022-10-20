@@ -1,16 +1,24 @@
 package com.ck;
 
-import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Properties;
 
 public class App {
 	public static void main(String[] args) {
-		System.out.println("Hello World!\nfrom S06_T70");
+		System.out.println("Hello World!\nfrom S06_T71");
 		
 		Properties props = new Properties();
+		String env = System.getProperty("env");
 		
-		String propertiesFile = "/config/db.properties";
+		// For testing with -D in the run configurations the following servers are used which may be differentiated in the propertiesFile string output to the console.
+		// db.dev.properties uses server=localhost
+		// db.prod.properties uses server=127.0.0.1
+		if (env == null) {
+			env = "dev"; // Supply a default
+		}
+				
+		String propertiesFile = String.format("/config/db.%s.properties", env);
+		System.out.println("Config used : " +propertiesFile);
 		try {
 			props.load(App.class.getResourceAsStream(propertiesFile));
 		} catch (Exception e1) {
