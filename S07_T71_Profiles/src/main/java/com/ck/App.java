@@ -5,7 +5,7 @@ import java.util.Properties;
 
 public class App {
 	public static void main(String[] args) {
-		System.out.println("Hello World!\nfrom S06_T71");
+		System.out.println("Hello World!\nfrom S07_T71");
 		
 		Properties props = new Properties();
 		String env = System.getProperty("env");

@@ -5,7 +5,7 @@ import java.util.Properties;
 
 public class App {
 	public static void main(String[] args) {
-		System.out.println("Hello World!\nfrom S06_T72");
+		System.out.println("Hello World!\nfrom S07_T72");
 		
 		Properties props = Profile.getProperties("db");
 		Database db = Database.instance();
