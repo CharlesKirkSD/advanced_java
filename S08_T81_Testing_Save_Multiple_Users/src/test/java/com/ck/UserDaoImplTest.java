@@ -59,6 +59,18 @@ public class UserDaoImplTest {
 		Database.instance().close();
 	}
 	
+	private int getMaxId() throws SQLException {
+		var stmt = conn.createStatement();
+		
+		var rs = stmt.executeQuery("select max(id) as id from user");
+		rs.next();
+		var id = rs.getInt(1);
+		
+		stmt.close();
+		
+		return id;
+	}
+	
 	@Test
 	public void testSave() throws SQLException {
 		User user = new User("Jupiter");
@@ -77,5 +89,17 @@ public class UserDaoImplTest {
 		assertEquals("User name does not match retrieved", user.getName(), name);
 		
 		stmt.close();
+	}
+	
+	@Test
+	public void testSaveMultiple() throws SQLException {
+		UserDao userDao = new UserDaoImpl();
+		
+		for (var u: users) {
+			userDao.save(u);
+		}
+		
+		var maxId = getMaxId();
+		System.out.println(maxId);
 	}
 }
