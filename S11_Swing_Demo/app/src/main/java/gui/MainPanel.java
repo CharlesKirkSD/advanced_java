@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Insets;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -32,6 +33,8 @@ public class MainPanel extends JPanel {
 		setLayout(new GridBagLayout());
 		
 		GridBagConstraints gc = new GridBagConstraints();
+		var rightPadInsets = new Insets(0,0,0,10);
+		var zeroPadInsets = new Insets(0,0,0,0);
 		
 		gc.gridx = 0;
 		gc.gridy = 0;
@@ -46,24 +49,29 @@ public class MainPanel extends JPanel {
 		gc.gridy++;
 		gc.weighty = 1;
 		gc.anchor = GridBagConstraints.LINE_END;
+		gc.insets = rightPadInsets;
 		add(nameLabel, gc);
 		
 		gc.gridx = 1;
 		gc.anchor = GridBagConstraints.LINE_START;
+		gc.insets = zeroPadInsets;
 		add(nameField, gc);
 		
 		gc.gridx = 0;
 		gc.gridy++;
 		gc.anchor = GridBagConstraints.LINE_END;
+		gc.insets = rightPadInsets;
 		add(passLabel, gc);
 		
 		gc.gridx = 1;
 		gc.anchor = GridBagConstraints.LINE_START;
+		gc.insets = new Insets(0,0,0,0);
 		add(passField, gc);
 		
 		gc.gridy++;
 		gc.weighty = 50;
 		gc.anchor = GridBagConstraints.FIRST_LINE_START;
+		gc.insets = new Insets(0,75,0,0);
 		add(addButton, gc);
 	}
 }
