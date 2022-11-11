@@ -1,6 +1,7 @@
 package gui;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
@@ -18,6 +19,8 @@ public class MainPanel extends JPanel {
 		
 		// Create the components
 		JLabel formLabel = new JLabel("Add User", JLabel.RIGHT);
+		formLabel.setFont(new Font("Serif", Font.PLAIN, 20));
+		
 		JLabel nameLabel = new JLabel("Name:", JLabel.RIGHT);
 		JLabel passLabel = new JLabel("Password:", JLabel.RIGHT);
 		
@@ -32,14 +35,16 @@ public class MainPanel extends JPanel {
 		
 		gc.gridx = 0;
 		gc.gridy = 0;
+		
 		gc.weightx = 1;
-		gc.weightx = 1;
+		gc.weighty = 50;
 		
 		gc.gridwidth = 2;
 		add(formLabel, gc);
 		gc.gridwidth = 1;
 		
 		gc.gridy++;
+		gc.weighty = 1;
 		gc.anchor = GridBagConstraints.LINE_END;
 		add(nameLabel, gc);
 		
@@ -57,6 +62,8 @@ public class MainPanel extends JPanel {
 		add(passField, gc);
 		
 		gc.gridy++;
+		gc.weighty = 50;
+		gc.anchor = GridBagConstraints.FIRST_LINE_START;
 		add(addButton, gc);
 	}
 }
