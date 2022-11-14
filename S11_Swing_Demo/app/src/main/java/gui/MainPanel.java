@@ -17,9 +17,11 @@ public class MainPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 	
 	public MainPanel() {
-		setBackground(Color.LIGHT_GRAY);
+		// setBackground(Color.LIGHT_GRAY);
 		
 		// Create the components
+		JPanel nestedPanel = createFormPanel();
+		
 		JLabel formLabel = new JLabel("Add User", JLabel.RIGHT);
 		formLabel.setFont(new Font("Serif", Font.PLAIN, 20));
 
@@ -37,13 +39,18 @@ public class MainPanel extends JPanel {
 		gc.weighty = 2;
 		gc.gridy++;
 		gc.anchor = GridBagConstraints.NORTH;
-		JPanel nestedPanel = createFormPanel();
+
 		add(nestedPanel, gc);
 	}
 	
 	private JPanel createFormPanel() {
 		JPanel panel = new JPanel();
-		panel.setBorder(BorderFactory.createEtchedBorder());
+		
+		var padding = 20;
+		var etchedBorder = BorderFactory.createEtchedBorder();
+		var emptyBorder = BorderFactory.createEmptyBorder(padding, padding, padding, padding);
+		
+		panel.setBorder(BorderFactory.createCompoundBorder(etchedBorder,emptyBorder));
 		
 		JLabel nameLabel = new JLabel("Name:", JLabel.RIGHT);
 		JLabel passLabel = new JLabel("Password:", JLabel.RIGHT);
@@ -63,10 +70,10 @@ public class MainPanel extends JPanel {
 		gc.gridx = 0;
 		gc.gridy = 0;
 		
+		gc.gridy++;
 		gc.gridwidth = 1;
 		gc.weighty = 0.1;
 		
-		gc.gridy++;
 		gc.anchor = GridBagConstraints.LINE_END;
 		gc.insets = rightPadInsets;
 		panel.add(nameLabel, gc);
@@ -90,8 +97,7 @@ public class MainPanel extends JPanel {
 		
 		gc.gridy++;
 		gc.weighty = 50;
-		gc.anchor = GridBagConstraints.FIRST_LINE_START;
-		gc.insets = new Insets(0,75,0,0);
+		gc.anchor = GridBagConstraints.FIRST_LINE_END;
 		panel.add(addButton, gc);
 
 		
