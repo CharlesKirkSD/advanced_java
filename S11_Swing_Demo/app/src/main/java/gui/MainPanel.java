@@ -6,6 +6,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -21,6 +22,28 @@ public class MainPanel extends JPanel {
 		// Create the components
 		JLabel formLabel = new JLabel("Add User", JLabel.RIGHT);
 		formLabel.setFont(new Font("Serif", Font.PLAIN, 20));
+
+		setLayout(new GridBagLayout());
+		
+		GridBagConstraints gc = new GridBagConstraints();
+		
+		gc.gridx = 0;
+		gc.gridy = 0;
+		
+		gc.weighty = 1;
+
+		add(formLabel, gc);
+		
+		gc.weighty = 2;
+		gc.gridy++;
+		gc.anchor = GridBagConstraints.NORTH;
+		JPanel nestedPanel = createFormPanel();
+		add(nestedPanel, gc);
+	}
+	
+	private JPanel createFormPanel() {
+		JPanel panel = new JPanel();
+		panel.setBorder(BorderFactory.createEtchedBorder());
 		
 		JLabel nameLabel = new JLabel("Name:", JLabel.RIGHT);
 		JLabel passLabel = new JLabel("Password:", JLabel.RIGHT);
@@ -30,48 +53,48 @@ public class MainPanel extends JPanel {
 		
 		JButton addButton = new JButton("Save");
 		
-		setLayout(new GridBagLayout());
-		
 		GridBagConstraints gc = new GridBagConstraints();
+
+		panel.setLayout(new GridBagLayout());
+		
 		var rightPadInsets = new Insets(0,0,0,10);
 		var zeroPadInsets = new Insets(0,0,0,0);
 		
 		gc.gridx = 0;
 		gc.gridy = 0;
 		
-		gc.weightx = 1;
-		gc.weighty = 50;
-		
-		gc.gridwidth = 2;
-		add(formLabel, gc);
 		gc.gridwidth = 1;
+		gc.weighty = 0.1;
 		
 		gc.gridy++;
-		gc.weighty = 1;
 		gc.anchor = GridBagConstraints.LINE_END;
 		gc.insets = rightPadInsets;
-		add(nameLabel, gc);
+		panel.add(nameLabel, gc);
 		
 		gc.gridx = 1;
 		gc.anchor = GridBagConstraints.LINE_START;
 		gc.insets = zeroPadInsets;
-		add(nameField, gc);
+		panel.add(nameField, gc);
 		
 		gc.gridx = 0;
 		gc.gridy++;
+		gc.weighty = 0.1;
 		gc.anchor = GridBagConstraints.LINE_END;
 		gc.insets = rightPadInsets;
-		add(passLabel, gc);
+		panel.add(passLabel, gc);
 		
 		gc.gridx = 1;
 		gc.anchor = GridBagConstraints.LINE_START;
-		gc.insets = new Insets(0,0,0,0);
-		add(passField, gc);
+		gc.insets = rightPadInsets;
+		panel.add(passField, gc);
 		
 		gc.gridy++;
 		gc.weighty = 50;
 		gc.anchor = GridBagConstraints.FIRST_LINE_START;
 		gc.insets = new Insets(0,75,0,0);
-		add(addButton, gc);
+		panel.add(addButton, gc);
+
+		
+		return panel;
 	}
 }
