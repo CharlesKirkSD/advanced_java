@@ -60,6 +60,12 @@ public class MainPanel extends JPanel {
 		
 		JButton addButton = new JButton("Save");
 		
+		addButton.addActionListener(e -> {
+			String name = nameField.getText();
+			String password = passField.getText();
+			System.out.println("Hello " + name + " :" + password);
+		});
+		
 		GridBagConstraints gc = new GridBagConstraints();
 
 		panel.setLayout(new GridBagLayout());
