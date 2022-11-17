@@ -11,6 +11,6 @@ public class ProfileTest {
 		var props = Profile.getProperties("db"); // Comes from the properties of the environment, the System properties, these need to be set before the test is run.
 		assertNotNull("Cannot load db properties", props); // May fail if the environment property has not been set.
 		var dbName = props.getProperty("database");
-		assertEquals("dbName incorrect", "people_test", dbName);
+		assertEquals("dbName incorrect", "swingdb", dbName);
 	}
 }

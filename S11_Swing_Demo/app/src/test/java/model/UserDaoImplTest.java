@@ -30,7 +30,7 @@ public class UserDaoImplTest {
 				.map(Arrays::asList)
 				.flatMap(list -> list.stream()) // Flattens the input, a stream of lists, to a stream of strings, result is a collection of single words.
 				.filter(word ->word.length() > 3 && word.length() < 20)
-				.map(word -> new User(word)) // Convert the stream of words to a stream of type User
+				.map(word -> new User(word, "pass" + word)) // Convert the stream of words to a stream of type User
 				.limit(NUM_TEST_USERS)
 				.collect(Collectors.toList())
 				;
@@ -75,7 +75,7 @@ public class UserDaoImplTest {
 	private List<User> getUsersInRange(int minId, int maxId) throws SQLException {
 		List<User> retrieved = new ArrayList<>();
 		
-		var stmt = conn.prepareStatement("select id, name from user where id >=? and id <=?");
+		var stmt = conn.prepareStatement("select id, name, password from user where id >=? and id <=?");
 		
 		stmt.setInt(1, minId);
 		stmt.setInt(2, maxId);
@@ -84,8 +84,9 @@ public class UserDaoImplTest {
 		while(rs.next()) {
 			int id = rs.getInt("id");
 			String name = rs.getString("name");
+			String password = rs.getString("password");
 			
-			var user = new User(id, name);
+			var user = new User(id, name, password);
 			retrieved.add(user);
 		}
 		
@@ -97,20 +98,23 @@ public class UserDaoImplTest {
 	
 	@Test
 	public void testSave() throws SQLException {
-		User user = new User("Jupiter");
+		User user = new User("Jupiter", "Neptune");
 		
 		UserDao userDao = new UserDaoImpl();
 		
 		userDao.save(user);
 		
 		var stmt = conn.createStatement();
-		var rs = stmt.executeQuery("select id, name from user order by id");
+		var rs = stmt.executeQuery("select id, name, password from user order by id");
 		boolean result = rs.next();
 		
 		assertTrue("Cannot retrieve inserted user", result);
 		
 		String name = rs.getString("name");
 		assertEquals("User name does not match retrieved", user.getName(), name);
+		
+		String password = rs.getString("password");
+		assertEquals("User name does not match retrieved", user.getPassword(), password);
 		
 		stmt.close();
 	}
@@ -179,6 +183,7 @@ public class UserDaoImplTest {
 		assertEquals("Retrieved user doesn't match saved users", user, retrievedUser); // Tests find by id
 		
 		user.setName("xyzabcde");
+		user.setPassword("abcdefg");
 		userDao.update(user);
 		
 		retrievedUserOpt = userDao.findById(maxId);
