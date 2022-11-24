@@ -17,9 +17,17 @@ repositories {
 }
 
 dependencies {
+	// https://mvnrepository.com/artifact/javax.servlet.jsp/javax.servlet.jsp-api
+	implementation group: 'javax.servlet.jsp', name: 'javax.servlet.jsp-api', version: '2.3.3'
     // Use JUnit test framework.
+    
     testImplementation 'junit:junit:4.13.2'
 
     // This dependency is used by the application.
     implementation 'com.google.guava:guava:30.1.1-jre'
+}
+
+application {
+    // Define the main class for the application.
+    mainClass = 'ck.App'
 }

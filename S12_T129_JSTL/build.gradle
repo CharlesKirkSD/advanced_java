@@ -17,6 +17,13 @@ repositories {
 }
 
 dependencies {
+	// https://mvnrepository.com/artifact/org.apache.taglibs/taglibs-standard-impl
+	implementation group: 'org.apache.taglibs', name: 'taglibs-standard-impl', version: '1.2.5'
+
+	
+	// https://mvnrepository.com/artifact/javax.servlet.jsp/javax.servlet.jsp-api
+	implementation group: 'javax.servlet.jsp', name: 'javax.servlet.jsp-api', version: '2.3.3'
+	
     // Use JUnit test framework.
     testImplementation 'junit:junit:4.13.2'
 
