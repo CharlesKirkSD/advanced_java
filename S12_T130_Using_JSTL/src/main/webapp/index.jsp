@@ -10,8 +10,17 @@
 <body>
 
 <p>
-<c:out value="Hello JSTL from S12_T29_JSTL" />
+<c:out value="Hello JSTL from S12_T130_Using_JSTL" />
 </p>
+
+<p>
+<c:out value = "{pageContext.servletContext.contextPath}" />
+</p>
+
+<p>
+<c:url value = "test" />
+</p>
+
 
 </body>
 </html>
