@@ -30,7 +30,7 @@ public class HelloWorld extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		PrintWriter pw = response.getWriter();
 		
-		response.setContentType("text/HTML"); // Tells the browser how to interpret the data being sent.
+		response.setContentType("text/HTML");
 		
 		pw.println("<HTML><strong>");
 		pw.print("Hello There from S12_T32_Serving_HTML");
