@@ -10,20 +10,20 @@
 <body>
 
 	<p>
-	<c:out value="Hello JSTL from S12_T131_Servlets" />
+	<c:out value="S12_T133_Creating_a_Form" />
 	</p>
 	
 	<p>
 	<c:out value = "{pageContext.servletContext.contextPath}" />
 	</p>
 	
-	<p>
-	<c:url value = "test" />
-	</p>
+	<form>
 
 	<label for="name">Name:</label><input type="text" id="name" name="name" />
 	<label for="password">Password:</label><input type="password" id="password" name="password" />
 	<input type="submit" value="Submit">
+
+	</form>
 
 </body>
 </html>

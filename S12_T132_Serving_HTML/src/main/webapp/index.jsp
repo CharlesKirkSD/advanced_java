@@ -10,7 +10,7 @@
 <body>
 
 <p>
-<c:out value="Hello JSTL from S12_T131_Servlets" />
+<c:out value="S12_T132_Serving_HTML" />
 </p>
 
 <p>

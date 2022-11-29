@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+                                        
+    
+    
+    
+    
+    
+    
+    
+    
+    <wb-module deploy-name="S12_T124_Hello_World_Web">
+                                                                                
+        
+        
+        
+        
+        
+        
+        
+        
+        <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
+                                                                                
+        
+        
+        
+        
+        
+        
+        
+        
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
+                                                                                
+        
+        
+        
+        
+        
+        
+        
+        
+        <property name="java-output-path" value="/S12_T124_Hello_World_Web/build/classes"/>
+        <property name="context-root" value="S12_T134_Styling_the_Form"/>
+                                                                            
+    
+    
+    
+    
+    
+    
+    
+    
+    </wb-module>
+                                    
+
+
+
+
+
+
+
+
+</project-modules>
