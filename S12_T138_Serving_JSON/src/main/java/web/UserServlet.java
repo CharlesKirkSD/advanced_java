@@ -53,7 +53,7 @@ public class UserServlet extends HttpServlet {
 		response.setContentType("text/html");
 		response.getWriter().println("<html>Form submitted: " + name + "</html>");
 		
-		System.out.println(name + ": " + password);
+		// System.out.println(name + ": " + password);
 	}
 
 }
