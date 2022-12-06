@@ -15,7 +15,7 @@ public class Runner implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		System.out.println("Hello World! from S13_T144");
+		System.out.println("Hello World! from S13_T145");
 		greeter.greet();
 	}
 
