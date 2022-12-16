@@ -11,7 +11,7 @@
 	<groupId>com.caveofprogramming</groupId>
 	<artifactId>app</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>app</name>
+	<name>S14_T153_Basic_Spring_Web_App</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>17</java.version>
